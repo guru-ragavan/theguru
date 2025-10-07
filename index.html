@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Guru — Digital Marketing Agency</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#111827;
+      --muted:#475569;
+      --accent:#7b61ff;
+      --accent-2:#2bd0ff;
+      --card:#f8fafc;
+      --border:#e6eef8;
+      --radius:14px;
+      --transition: 700ms cubic-bezier(.2,.9,.2,1);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Inter",system-ui, -apple-system, "Poppins", "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+      scroll-behavior:smooth;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* Simple header */
+    header{
+      position:fixed; left:0; right:0; top:0;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px;
+      padding:14px 6%;
+      background:rgba(255,255,255,0.9);
+      border-bottom:1px solid var(--border);
+      z-index:1000;
+      backdrop-filter: blur(6px);
+    }
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+    .brand .mark{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#fff}
+    nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+    nav a{font-weight:600;color:var(--muted);font-size:14px}
+    nav a:hover{color:var(--text)}
+
+    /* Hero layout */
+    .hero {
+      display:grid;
+      grid-template-columns: 1fr 520px;
+      gap:40px;
+      align-items:center;
+      padding:140px 6% 80px;
+      max-width:1200px;
+      margin:0 auto;
+      min-height:calc(100vh - 80px);
+    }
+    .hero-left{max-width:720px}
+    .kicker{display:inline-block;padding:8px 12px;border-radius:999px;background:linear-gradient(90deg, rgba(123,97,255,0.10), rgba(43,208,255,0.06));color:var(--muted);font-weight:600;margin-bottom:18px}
+    .hero h1{font-size:44px;line-height:1.02;margin:0 0 18px;font-weight:800;color:var(--text)}
+    .hero p{color:var(--muted);font-size:16px;margin-bottom:28px;max-width:60ch}
+    .ctas{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{padding:12px 18px;border-radius:10px;font-weight:700;cursor:pointer;border:0;transition:all .25s}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff}
+    .btn-ghost{background:transparent;border:1px solid rgba(16,24,40,0.06); color:var(--text)}
+
+    .hero-right{
+      border-radius:18px; overflow:hidden; 
+      height:420px; display:flex;align-items:center;justify-content:center;
+    }
+    
+    /* Sections */
+    section{padding:80px 6%}
+    .container{max-width:1200px;margin:0 auto}
+    .section-title{text-align:center;font-size:28px;margin-bottom:30px;font-weight:700;color:var(--text)}
+
+    /* Services grid */
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .service{background:var(--card);border:1px solid var(--border);padding:22px;border-radius:12px;transition:transform .35s,box-shadow .35s}
+    .service:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(16,24,40,0.06)}
+    .service .icon{width:52px;height:52px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;margin-bottom:12px;font-size:20px}
+
+    /* Portfolio */
+    .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .portfolio-item{position:relative;border-radius:12px;overflow:hidden;background:#fff;border:1px solid var(--border)}
+    .portfolio-item img{width:100%;height:220px;object-fit:cover;display:block}
+    .overlay{position:absolute;inset:auto 0 0 0;padding:12px;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.42));color:#fff}
+
+    /* Pricing */
+    .pricing-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
+    .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .price-card{background:var(--card);border:1px solid var(--border);padding:22px;border-radius:12px;text-align:center}
+    .price-card h3{margin:8px 0 6px}
+    .price-card b{font-size:22px;color:var(--accent);display:block;margin-bottom:8px}
+
+    /* small billing toggle */
+    .billing{
+      display:inline-flex;align-items:center;gap:10px;padding:6px 10px;border-radius:999px;background:rgba(0,0,0,0.03);
+      border:1px solid var(--border);
+      font-size:14px;color:var(--muted);
+    }
+    .billing input[type="checkbox"]{width:38px;height:22px;appearance:none;background:#fff;border-radius:999px;border:1px solid var(--border);position:relative;cursor:pointer;outline:none}
+    .billing input[type="checkbox"]::after{content:'';position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,0.08);transition:left .2s}
+    .billing input[type="checkbox"]:checked{background:linear-gradient(90deg,var(--accent),var(--accent-2));border-color:transparent}
+    .billing input[type="checkbox"]:checked::after{left:19px}
+
+    /* Team / Testimonials */
+    .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .team-member{background:var(--card);border:1px solid var(--border);padding:14px;border-radius:12px;text-align:center}
+
+    /* Contact */
+    .contact-form{max-width:560px;margin:0 auto;display:grid;gap:12px}
+    .input{padding:12px 14px;border-radius:10px;border:1px solid var(--border);background:#fff}
+
+    footer{padding:30px 6%;text-align:center;color:var(--muted);border-top:1px solid var(--border);background:transparent}
+
+    /* Responsive */
+    @media (max-width:1024px){
+      .hero{grid-template-columns:1fr; padding-top:120px}
+      .services-grid{grid-template-columns:repeat(2,1fr)}
+      .portfolio-grid{grid-template-columns:repeat(2,1fr)}
+      .team-grid{grid-template-columns:repeat(2,1fr)}
+      .pricing-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:680px){
+      header{padding:12px 5%}
+      .hero{padding:120px 5% 60px}
+      .services-grid,.portfolio-grid,.pricing-grid{grid-template-columns:1fr}
+      .team-grid{grid-template-columns:1fr}
+    }
+
+    /* -------------------------
+       Scroll animations (custom)
+       ------------------------- */
+    [data-animate]{
+      opacity:0;
+      transform: translateY(18px);
+      transition: transform var(--transition), opacity 420ms ease;
+      will-change: transform, opacity;
+    }
+    [data-animate="from-left"]{ transform: translateX(-46px); }
+    [data-animate="from-right"]{ transform: translateX(46px); }
+    [data-animate="zoom-in"]{ transform: scale(.96); }
+    /* when in view */
+    .in-view{opacity:1; transform:none}
+    /* allow setting delay per element */
+    [data-delay]{ transition-delay: 0ms; } /* will be set by JS */
+
+  </style>
+</head>
+<body>
+
+  <!-- header -->
+  <header role="banner">
+    <div class="brand">
+      <img src="logo2.png" alt="Guru Logo" style="height:60px; border-radius:8px;">
+      <div>
+        <div style="font-size:40px;color:var(--muted);font-weight:700">Guru</div>
+
+      </div>  
+    </div>
+
+    <nav role="navigation" aria-label="Main nav">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <main id="home">
+    <section class="hero container" aria-label="Hero section">
+      <div class="hero-left" >
+        <div class="kicker" data-animate="from-left" data-delay="80">Premium • Performance • Growth</div>
+
+        <h1 data-animate="from-left" data-delay="160">Empower Your Brand with <span style="background:linear-gradient(90deg,var(--accent-2),var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent">Guru</span></h1>
+
+        <p data-animate="from-left" data-delay="260">We design high-converting digital experiences — from growth-driven ads and SEO to viral social campaigns and brand systems. Bold strategy. Elegant design. Measurable ROI.</p>
+
+        <div class="ctas" data-animate="from-left" data-delay="420">
+          <button class="btn btn-primary">Get Started</button>
+          <button class="btn btn-ghost">Explore Services</button>
+        </div>
+      </div>
+
+      <div class="hero-right" data-animate="from-right" data-delay="200" aria-hidden="true">
+        <div class="hero-media">
+          <img src="logo.png" 
+              alt="Digital marketing hero image" 
+              style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
+        </div>
+</div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="container" aria-labelledby="services-title">
+      <h2 id="services-title" class="section-title" data-animate="from-left" data-delay="60">Services</h2>
+
+      <div class="services-grid">
+        <div class="service" data-animate="zoom-in" data-delay="100">
+          <div class="icon"><i class="fa-solid fa-search"></i></div>
+          <h4>SEO Optimization</h4>
+          <p style="color:var(--muted)">Technical SEO, content strategy, and link building to increase organic traffic.</p>
+        </div>
+
+        <div class="service" data-animate="zoom-in" data-delay="180">
+          <div class="icon"><i class="fa-brands fa-facebook"></i></div>
+          <h4>Social Media</h4>
+          <p style="color:var(--muted)">Organic content, community growth and influencer campaigns that scale.</p>
+        </div>
+
+        <div class="service" data-animate="zoom-in" data-delay="260">
+          <div class="icon"><i class="fa-solid fa-bullhorn"></i></div>
+          <h4>Paid Ads</h4>
+          <p style="color:var(--muted)">Performance-led ad campaigns across Meta, Google & more with creative testing.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio" class="container" aria-labelledby="portfolio-title">
+      <h2 id="portfolio-title" class="section-title" data-animate="from-left" data-delay="60">Portfolio & Case Studies</h2>
+
+      <div class="portfolio-grid">
+        <div class="portfolio-item" data-animate="from-right" data-delay="100">
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop" alt="project 1">
+          <div class="overlay"><strong>E-Commerce Boost</strong><div style="font-size:12px;opacity:.9">View Case</div></div>
+        </div>
+
+        <div class="portfolio-item" data-animate="from-right" data-delay="180">
+          <img src="https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?q=80&w=1200&auto=format&fit=crop" alt="project 2">
+          <div class="overlay"><strong>SaaS Onboarding</strong><div style="font-size:12px;opacity:.9">View Case</div></div>
+        </div>
+
+        <div class="portfolio-item" data-animate="from-right" data-delay="260">
+          <img src="https://images.unsplash.com/photo-1497493292307-31c376b6e479?q=80&w=1200&auto=format&fit=crop" alt="project 3">
+          <div class="overlay"><strong>Brand Refresh</strong><div style="font-size:12px;opacity:.9">View Case</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="container" aria-labelledby="pricing-title">
+      <div class="pricing-head">
+        <h2 id="pricing-title" class="section-title" style="margin:0" data-animate="from-left" data-delay="60">Packages & Pricing</h2>
+
+        <div class="billing" data-animate="from-right" data-delay="140" aria-hidden>
+          <label style="font-size:13px;color:var(--muted)">Monthly</label>
+          <input id="billingToggle" type="checkbox" aria-label="Toggle yearly billing">
+          <label style="font-size:13px;color:var(--muted)">Yearly</label>
+        </div>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="price-card" data-animate="from-left" data-delay="120">
+          <h3>Starter</h3>
+          <b data-monthly="₹19,999" data-yearly="₹15,999">₹19,999</b>
+          <p style="color:var(--muted)">Basic social + SEO package for early stage brands.</p>
+          <div style="margin-top:12px"><button class="btn btn-primary">Choose</button></div>
+        </div>
+
+        <div class="price-card" data-animate="from-left" data-delay="200">
+          <h3>Growth</h3>
+          <b data-monthly="₹49,999" data-yearly="₹39,999">₹49,999</b>
+          <p style="color:var(--muted)">Full-funnel acquisition & optimization.</p>
+          <div style="margin-top:12px"><button class="btn btn-primary">Choose</button></div>
+        </div>
+
+        <div class="price-card" data-animate="from-left" data-delay="280">
+          <h3>Enterprise</h3>
+          <b data-monthly="₹99,999" data-yearly="₹79,999">₹99,999</b>
+          <p style="color:var(--muted)">Dedicated growth team & advanced analytics.</p>
+          <div style="margin-top:12px"><button class="btn btn-primary">Contact Sales</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="container" aria-labelledby="contact-title">
+      <h2 id="contact-title" class="section-title" data-animate="from-left" data-delay="60">Contact Us</h2>
+
+      <form class="contact-form" action="https://formspree.io/f/xpwyjaep" method="POST">  
+        <input class="input" name="name" placeholder="Your name" required>
+        <input class="input" name="email" placeholder="Email" type="email" required>
+        <input class="input" name="company" placeholder="Contact Number" required>
+        <textarea class="input" name="message" placeholder="Project brief" rows="5"></textarea>
+        <button class="btn btn-primary" type="submit">Send Inquiry</button>
+        <div id="formStatus" style="margin-top:12px;color:var(--muted)"></div>
+      </form>
+
+      <div id="successPopup" 
+          style="display:none;position:fixed;top:50%;left:50%;
+          transform:translate(-50%,-50%) scale(0.9);
+          background:#e8f8ec;color:#155724;padding:20px 40px;
+          border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.2);
+          font-weight:600;z-index:9999;transition:all .3s ease;">
+        ✅ Thank you! Your message has been sent.
+      </div>
+
+
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Guru — Premium Digital Marketing
+  </footer>
+
+  <!-- Scripts: animations + interactions -->
+  <script>
+    // IntersectionObserver-driven scroll animation
+    (function(){
+      const elements = document.querySelectorAll('[data-animate]');
+      if(!elements.length) return;
+
+      // set transitionDelay from data-delay attribute (ms)
+      elements.forEach(el=>{
+        const d = el.dataset.delay;
+        if(d) el.style.transitionDelay = (Number(d) / 1000) + 's';
+      });
+
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add('in-view');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {threshold: 0.12});
+
+      elements.forEach(el => observer.observe(el));
+    })();
+
+    // Pricing toggle (monthly/yearly)
+    (function(){
+      const toggle = document.getElementById('billingToggle');
+      const priceEls = document.querySelectorAll('[data-monthly]');
+      function updatePrices(yearly){
+        priceEls.forEach(b => {
+          const m = b.dataset.monthly;
+          const y = b.dataset.yearly;
+          b.textContent = yearly ? y : m;
+        });
+      }
+      if(toggle){
+        // start with monthly
+        updatePrices(false);
+        toggle.addEventListener('change', ()=> updatePrices(toggle.checked));
+      }
+    })();
+
+    // Fake send (no backend) to show contact feedback
+    (function(){
+      const sendBtn = document.getElementById('sendBtn');
+      if(!sendBtn) return;
+      sendBtn.addEventListener('click', async () => {
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const contactMsg = document.getElementById('contactMsg');
+        if(!name || !email){ contactMsg.textContent = 'Please enter name and email'; return; }
+        sendBtn.textContent = 'Sending...';
+        await new Promise(r => setTimeout(r, 900));
+        sendBtn.textContent = 'Send Inquiry';
+        contactMsg.textContent = 'Thanks! We will reply shortly.';
+        // reset form
+        document.querySelector('.contact-form').reset();
+        setTimeout(()=> contactMsg.textContent = '', 4000);
+      });
+    })();
+
+    // Smooth anchor offset for fixed header
+    (function(){
+      const headerHeight = document.querySelector('header').offsetHeight;
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', (e)=>{
+          const href = a.getAttribute('href');
+          if(!href || href === '#') return;
+          const el = document.querySelector(href);
+          if(!el) return;
+          e.preventDefault();
+          const top = el.getBoundingClientRect().top + window.scrollY - headerHeight - 12;
+          window.scrollTo({top, behavior:'smooth'});
+        });
+      });
+    })();
+
+
+  const form = document.querySelector(".contact-form");
+  const statusDiv = document.getElementById("formStatus");
+  const popup = document.getElementById("successPopup");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    statusDiv.textContent = "Sending...";
+    
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      });
+
+      if (response.ok) {
+        form.reset();
+        statusDiv.textContent = "";
+        popup.style.display = "block";
+        setTimeout(() => popup.style.transform = "translate(-50%,-50%) scale(1)", 100);
+        setTimeout(() => {
+          popup.style.transform = "translate(-50%,-50%) scale(0.9)";
+          popup.style.opacity = "0";
+          setTimeout(() => {
+            popup.style.display = "none";
+            popup.style.opacity = "1";
+          }, 300);
+        }, 3000);
+      } else {
+        statusDiv.textContent = "Something went wrong. Try again!";
+      }
+    } catch (error) {
+      statusDiv.textContent = "Network error. Please retry.";
+    }
+  });
+
+  </script>
+</body>
+</html>
