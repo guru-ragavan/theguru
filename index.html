@@ -260,6 +260,23 @@
       .team-grid{grid-template-columns:1fr}
     }
 
+    /* Hero text for mobile */
+    @media (max-width:680px) {
+      .hero-left h1 {
+        font-size: 28px;  /* reduce from 44px */
+        line-height: 1.1;
+      }
+    
+      .hero-left p {
+        font-size: 14px;  /* reduce paragraph size */
+      }
+    
+      .hero-left .kicker {
+        font-size: 12px;  /* smaller kicker */
+      }
+    }
+
+
     /* -------------------------
        Scroll animations (custom)
        ------------------------- */
@@ -878,4 +895,5 @@
   </script>
 </body>
 </html>
+
 
