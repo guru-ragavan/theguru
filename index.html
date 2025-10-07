@@ -61,27 +61,44 @@
       grid-template-columns: 1fr 520px;
       gap:40px;
       align-items:center;
-      padding:140px 6% 80px;
+      padding:30px 2% 40px;
       max-width:1200px;
       margin:0 auto;
       min-height:calc(100vh - 80px);
     }
-    .hero-left{max-width:720px}
-    .kicker{display:inline-block;padding:8px 12px;border-radius:999px;background:linear-gradient(90deg, rgba(123,97,255,0.10), rgba(43,208,255,0.06));color:var(--muted);font-weight:600;margin-bottom:18px}
-    .hero h1{font-size:44px;line-height:1.02;margin:0 0 18px;font-weight:800;color:var(--text)}
-    .hero p{color:var(--muted);font-size:16px;margin-bottom:28px;max-width:60ch}
+    .hero-left{max-width:720px; padding-left: 20px;}
+    .kicker{display:inline-block;padding:8px 12px;border-radius:999px;background:linear-gradient(90deg, rgba(123,97,255,0.10), rgba(43,208,255,0.06));color:var(--muted);font-weight:800;margin-bottom:18px}
+    .hero h1{font-size:70px;line-height:1.02;margin:0 0 18px;font-weight:1000;color:var(--text)}
+    .hero p{color:var(--muted);font-size:20px;margin-bottom:28px;max-width:60ch}
     .ctas{display:flex;gap:12px;flex-wrap:wrap}
     .btn{padding:12px 18px;border-radius:10px;font-weight:700;cursor:pointer;border:0;transition:all .25s}
     .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff}
     .btn-ghost{background:transparent;border:1px solid rgba(16,24,40,0.06); color:var(--text)}
 
     .hero-right{
-      border-radius:18px; overflow:hidden; 
+      border-radius:18px; overflow:hidden
       height:420px; display:flex;align-items:center;justify-content:center;
     }
     
     /* Sections */
-    section{padding:80px 6%}
+      section {
+        padding: 40px 5%; /* reduce top/bottom from 80px to 50px */
+      }
+
+      /* Optional: for mobile/tablet, reduce further */
+      @media (max-width:1024px){
+        section {
+          padding: 40px 5%;
+        }
+      }
+
+      @media (max-width:680px){
+        section {
+          padding: 30px 5%;
+        }
+      }
+
+
     .container{max-width:1200px;margin:0 auto}
     .section-title{text-align:center;font-size:28px;margin-bottom:30px;font-weight:700;color:var(--text)}
 
@@ -118,6 +135,9 @@
     /* Team / Testimonials */
     .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
     .team-member{background:var(--card);border:1px solid var(--border);padding:14px;border-radius:12px;text-align:center}
+
+    /* Zoom effect on testimonial client images */
+
 
     /* Contact */
     .contact-form{max-width:560px;margin:0 auto;display:grid;gap:12px}
@@ -159,6 +179,41 @@
       cursor: pointer;
       display: none;
     }
+
+    .brands-slider {
+      overflow: hidden;
+      margin: 40px 0;
+      border-top:1px solid var(--border);
+      border-bottom:1px solid var(--border);
+      padding:20px 0;
+    }
+
+    .brands-track {
+      display: flex;
+      gap:40px;
+      animation: scrollBrands 20s linear infinite;
+    }
+
+    .brands-track img {
+      height:50px;
+      object-fit:contain;
+      filter: grayscale(30%);
+      transition: filter 0.3s;
+    }
+
+    .brands-track img:hover {
+      filter: grayscale(0%);
+    }
+
+    @keyframes scrollBrands {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @media(max-width:768px){
+      .brands-track img{height:40px;}
+    }
+
 
     /* Mobile view */
     @media (max-width: 768px) {
@@ -222,6 +277,78 @@
     /* allow setting delay per element */
     [data-delay]{ transition-delay: 0ms; } /* will be set by JS */
 
+        /* -------------------------
+       Testimonials
+       ------------------------- */
+
+    .testimonial-slider {
+      position: relative;
+      margin-top: 30px;
+    }
+
+    .testimonial-track-wrapper {
+      overflow: hidden;
+    }
+
+    .testimonial-track {
+      display: flex;
+      gap: 20px;
+      transition: transform 0.4s ease;
+    }
+
+    .testimonial {
+      flex: 0 0 calc(33.333% - 13.33px); /* 3 per view */
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .client {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .client img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .slide-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(123,97,255,0.1);
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 28px;
+      cursor: pointer;
+      color: var(--accent);
+      z-index: 10;
+    }
+
+    .slide-btn.left { left: 10px; }
+    .slide-btn.right { right: 10px; }
+
+    @media(max-width:1024px){
+      .testimonial { flex: 0 0 calc(50% - 10px); } /* 2 per view on tablet */
+    }
+
+    @media(max-width:680px){
+      .testimonial { flex: 0 0 100%; } /* 1 per view on mobile */
+    }
+
+
+
   </style>
 </head>
 <body>
@@ -241,6 +368,8 @@
       <nav class="nav-links" id="navLinks">
         <a href="#home">Home</a>
         <a href="#services">Services</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#portfolio">Portfolio</a>
         <a href="#pricing">Pricing</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -294,8 +423,202 @@
           <h4>Paid Ads</h4>
           <p style="color:var(--muted)">Performance-led ad campaigns across Meta, Google & more with creative testing.</p>
         </div>
+
+        <div class="service" data-animate="zoom-in" data-delay="340">
+          <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
+          <h4>Analytics & Reporting</h4>
+          <p style="color:var(--muted)">Track, measure, and optimize campaigns with actionable insights.</p>
+        </div>
+
+        <div class="service" data-animate="zoom-in" data-delay="420">
+          <div class="icon"><i class="fa-solid fa-paint-brush"></i></div>
+          <h4>Brand Design</h4>
+          <p style="color:var(--muted)">Logo, UI/UX, and visual identity design to make your brand stand out.</p>
+        </div>
+
+        <div class="service" data-animate="zoom-in" data-delay="500">
+          <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+          <h4>Email Marketing</h4>
+          <p style="color:var(--muted)">Automated campaigns, newsletters, and drip sequences for better engagement.</p>
+        </div>
+
       </div>
     </section>
+
+    <section id="brands" class="container" aria-label="Our Brands">
+      <div class="brands-slider">
+        <div class="brands-track">
+          <img src="brand1.png" alt="Brand 1">
+          <img src="brand2.png" alt="Brand 2">
+          <img src="brand3.png" alt="Brand 3">
+          <img src="brand4.png" alt="Brand 4">
+          <img src="brand5.png" alt="Brand 5">
+          <img src="brand6.png" alt="Brand 6">
+          <!-- Repeat images to make loop seamless -->
+          <img src="brand1.png" alt="Brand 1">
+          <img src="brand2.png" alt="Brand 2">
+          <img src="brand3.png" alt="Brand 3">
+          <img src="brand4.png" alt="Brand 4">
+          <img src="brand5.png" alt="Brand 5">
+          <img src="brand6.png" alt="Brand 6">
+          <!-- Repeat images to make loop seamless -->
+          <img src="brand1.png" alt="Brand 1">
+          <img src="brand2.png" alt="Brand 2">
+          <img src="brand3.png" alt="Brand 3">
+          <img src="brand4.png" alt="Brand 4">
+          <img src="brand5.png" alt="Brand 5">
+          <img src="brand6.png" alt="Brand 6">
+          <!-- Repeat images to make loop seamless -->
+          <img src="brand1.png" alt="Brand 1">
+          <img src="brand2.png" alt="Brand 2">
+          <img src="brand3.png" alt="Brand 3">
+          <img src="brand4.png" alt="Brand 4">
+          <img src="brand5.png" alt="Brand 5">
+          <img src="brand6.png" alt="Brand 6">
+          <!-- Repeat images to make loop seamless -->
+          <img src="brand1.png" alt="Brand 1">
+          <img src="brand2.png" alt="Brand 2">
+          <img src="brand3.png" alt="Brand 3">
+          <img src="brand4.png" alt="Brand 4">
+          <img src="brand5.png" alt="Brand 5">
+          <img src="brand6.png" alt="Brand 6">
+          <!-- Repeat images to make loop seamless -->
+          <img src="brand1.png" alt="Brand 1">
+          <img src="brand2.png" alt="Brand 2">
+          <img src="brand3.png" alt="Brand 3">
+          <img src="brand4.png" alt="Brand 4">
+          <img src="brand5.png" alt="Brand 5">
+          <img src="brand6.png" alt="Brand 6">
+          <!-- Repeat images to make loop seamless -->
+          <img src="brand1.png" alt="Brand 1">
+          <img src="brand2.png" alt="Brand 2">
+          <img src="brand3.png" alt="Brand 3">
+          <img src="brand4.png" alt="Brand 4">
+          <img src="brand5.png" alt="Brand 5">
+          <img src="brand6.png" alt="Brand 6">
+          <!-- Repeat images to make loop seamless -->
+          <img src="brand1.png" alt="Brand 1">
+          <img src="brand2.png" alt="Brand 2">
+          <img src="brand3.png" alt="Brand 3">
+          <img src="brand4.png" alt="Brand 4">
+          <img src="brand5.png" alt="Brand 5">
+          <img src="brand6.png" alt="Brand 6">
+          <!-- Repeat images to make loop seamless -->
+          <img src="brand1.png" alt="Brand 1">
+          <img src="brand2.png" alt="Brand 2">
+          <img src="brand3.png" alt="Brand 3">
+          <img src="brand4.png" alt="Brand 4">
+          <img src="brand5.png" alt="Brand 5">
+          <img src="brand6.png" alt="Brand 6">
+          <!-- Repeat images to make loop seamless -->
+          <img src="brand1.png" alt="Brand 1">
+          <img src="brand2.png" alt="Brand 2">
+          <img src="brand3.png" alt="Brand 3">
+          <img src="brand4.png" alt="Brand 4">
+          <img src="brand5.png" alt="Brand 5">
+          <img src="brand6.png" alt="Brand 6">
+          <!-- Repeat images to make loop seamless -->
+          <img src="brand1.png" alt="Brand 1">
+          <img src="brand2.png" alt="Brand 2">
+          <img src="brand3.png" alt="Brand 3">
+          <img src="brand4.png" alt="Brand 4">
+          <img src="brand5.png" alt="Brand 5">
+          <img src="brand6.png" alt="Brand 6">
+          <!-- Repeat images to make loop seamless -->
+          <img src="brand1.png" alt="Brand 1">
+          <img src="brand2.png" alt="Brand 2">
+          <img src="brand3.png" alt="Brand 3">
+          <img src="brand4.png" alt="Brand 4">
+          <img src="brand5.png" alt="Brand 5">
+          <img src="brand6.png" alt="Brand 6">
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="container" aria-labelledby="testimonials-title">
+      <h2 id="testimonials-title" class="section-title">What Our Clients Say</h2>
+
+      <div class="testimonial-slider">
+        <button class="slide-btn left" aria-label="Previous testimonial">‹</button>
+
+        <div class="testimonial-track-wrapper">
+          <div class="testimonial-track">
+            <!-- Testimonial 1 -->
+            <div class="testimonial">
+              <p>"Guru transformed our online presence. Leads increased 3x in just 2 months!"</p>
+              <div class="client">
+                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Client 1">
+                <div>
+                  <strong>Sarah Williams</strong>
+                  <span>CEO, BrightTech</span>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 2 -->
+            <div class="testimonial">
+              <p>"Their strategy and creative campaigns took our brand to the next level."</p>
+              <div class="client">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client 2">
+                <div>
+                  <strong>James Lee</strong>
+                  <span>Founder, EcoWave</span>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 3 -->
+            <div class="testimonial">
+              <p>"Excellent service and measurable results. Highly recommend Guru for digital growth."</p>
+              <div class="client">
+                <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Client 3">
+                <div>
+                  <strong>Emily Johnson</strong>
+                  <span>Marketing Head, StylePro</span>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 4 -->
+            <div class="testimonial">
+              <p>"Our social media engagement doubled thanks to Guru's campaigns."</p>
+              <div class="client">
+                <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Client 4">
+                <div>
+                  <strong>Michael Brown</strong>
+                  <span>CMO, ShopEase</span>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 5 -->
+            <div class="testimonial">
+              <p>"Creative team with amazing attention to detail. Loved the results!"</p>
+              <div class="client">
+                <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Client 5">
+                <div>
+                  <strong>Linda Davis</strong>
+                  <span>Founder, GreenLeaf</span>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 6 -->
+            <div class="testimonial">
+              <p>"Professional, fast, and effective. Highly recommended for any business."</p>
+              <div class="client">
+                <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Client 6">
+                <div>
+                  <strong>Robert Wilson</strong>
+                  <span>CEO, TechNova</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="slide-btn right" aria-label="Next testimonial">›</button>
+      </div>
+    </section>
+
+
 
     <!-- PORTFOLIO -->
     <section id="portfolio" class="container" aria-labelledby="portfolio-title">
@@ -316,6 +639,24 @@
           <img src="https://images.unsplash.com/photo-1497493292307-31c376b6e479?q=80&w=1200&auto=format&fit=crop" alt="project 3">
           <div class="overlay"><strong>Brand Refresh</strong><div style="font-size:12px;opacity:.9">View Case</div></div>
         </div>
+
+        <div class="portfolio-item" data-animate="from-right" data-delay="340">
+          <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1200&auto=format&fit=crop" alt="project 4">
+          <div class="overlay"><strong>App Launch</strong><div style="font-size:12px;opacity:.9">View Case</div></div>
+        </div>
+
+        <!-- NEW Portfolio 5 -->
+        <div class="portfolio-item" data-animate="from-right" data-delay="420">
+          <img src="https://images.unsplash.com/photo-1525182008055-f88b95ff7980?q=80&w=1200&auto=format&fit=crop" alt="project 5">
+          <div class="overlay"><strong>Website Redesign</strong><div style="font-size:12px;opacity:.9">View Case</div></div>
+        </div>
+
+        <!-- NEW Portfolio 6 -->
+        <div class="portfolio-item" data-animate="from-right" data-delay="500">
+          <img src="https://images.unsplash.com/photo-1522205408450-add114ad53fe?q=80&w=1200&auto=format&fit=crop" alt="project 6">
+          <div class="overlay"><strong>Marketing Campaign</strong><div style="font-size:12px;opacity:.9">View Case</div></div>
+        </div>
+
       </div>
     </section>
 
@@ -510,6 +851,29 @@
   });
 
 
+    const track = document.querySelector('.testimonial-track');
+    const testimonials = document.querySelectorAll('.testimonial');
+    const btnLeft = document.querySelector('.slide-btn.left');
+    const btnRight = document.querySelector('.slide-btn.right');
+
+    let index = 0;
+
+    function updateSlider() {
+      const testimonialWidth = testimonials[0].offsetWidth + 20; // width + gap
+      track.style.transform = `translateX(-${index * testimonialWidth}px)`;
+    }
+
+    btnLeft.addEventListener('click', () => {
+      index = Math.max(index - 1, 0);
+      updateSlider();
+    });
+
+    btnRight.addEventListener('click', () => {
+      index = Math.min(index + 1, testimonials.length - Math.floor(track.parentElement.offsetWidth / testimonials[0].offsetWidth));
+      updateSlider();
+    });
+
+    window.addEventListener('resize', updateSlider);
 
   </script>
 </body>
