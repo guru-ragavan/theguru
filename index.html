@@ -340,6 +340,38 @@
     }
 
 
+    /* ----------------------
+       Global Responsive Tweaks
+    -----------------------*/
+    
+    /* Laptop: medium screens 1024px and below */
+    @media (max-width:1024px){
+      .services-grid{grid-template-columns:repeat(2,1fr);}
+      .portfolio-grid{grid-template-columns:repeat(2,1fr);}
+      .pricing-grid{grid-template-columns:repeat(2,1fr);}
+      .team-grid{grid-template-columns:repeat(2,1fr);}
+      .testimonial { flex: 0 0 calc(50% - 10px); }
+    }
+    
+    /* Tablet: small screens 768px and below */
+    @media (max-width:768px){
+      .services-grid,.portfolio-grid,.pricing-grid,.team-grid{grid-template-columns:1fr;}
+      .brands-slider{padding:15px 0;}
+      .testimonial { flex: 0 0 100%; }
+      .hero-right{display:none;}
+    }
+    
+    /* Mobile: very small screens 480px and below */
+    @media (max-width:480px){
+      header{padding:10px 3%;}
+      nav a{font-size:13px; padding:6px 0;}
+      .pricing-head{flex-direction:column; gap:10px;}
+      .pricing-grid{gap:14px;}
+      .service .icon{width:44px;height:44px;font-size:18px;}
+      .portfolio-item img{height:180px;}
+    }
+
+
   </style>
 </head>
 <body>
@@ -869,5 +901,6 @@
   </script>
 </body>
 </html>
+
 
 
