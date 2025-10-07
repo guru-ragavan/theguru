@@ -71,7 +71,7 @@
     .hero h1{font-size:70px;line-height:1.02;margin:0 0 18px;font-weight:1000;color:var(--text)}
     .hero p{color:var(--muted);font-size:20px;margin-bottom:28px;max-width:60ch}
     .ctas{display:flex;gap:12px;flex-wrap:wrap}
-    .btn{padding:12px 18px;border-radius:10px;font-weight:700;cursor:pointer;border:0;transition:all .25s}
+    .btn{padding:12px 18px;border-radius:10px;font-weight:800;cursor:pointer;border:0;transition:all .25s}
     .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff}
     .btn-ghost{background:transparent;border:1px solid rgba(16,24,40,0.06); color:var(--text)}
 
@@ -94,7 +94,7 @@
 
       @media (max-width:680px){
         section {
-          padding: 10px 2%;
+          padding: 30px 5%;
         }
       }
 
@@ -260,20 +260,46 @@
       .team-grid{grid-template-columns:1fr}
     }
 
-    /* Hero text for mobile */
-    @media (max-width:680px) {
-      .hero-left h1 {
-        font-size: 38px;  /* reduce from 44px */
-        line-height: 1.1;
-      }
-    
-      .hero-left p {
-        font-size: 24px;  /* reduce paragraph size */
-      }
-    
-      .hero-left .kicker {
-        font-size: 22px;  /* smaller kicker */
-      }
+    /* ----------------------
+   Global Responsive Tweaks
+-----------------------*/
+
+    /* Laptop: medium screens 1024px and below */
+    @media (max-width:1024px){
+      .hero-left{padding-left:10px;}
+      .hero h1{font-size:48px; line-height:1.1;}
+      .hero p{font-size:18px;}
+      .services-grid{grid-template-columns:repeat(2,1fr);}
+      .portfolio-grid{grid-template-columns:repeat(2,1fr);}
+      .pricing-grid{grid-template-columns:repeat(2,1fr);}
+      .team-grid{grid-template-columns:repeat(2,1fr);}
+      .testimonial { flex: 0 0 calc(50% - 10px); }
+    }
+
+    /* Tablet: small screens 768px and below */
+    @media (max-width:768px){
+      header{padding:12px 4%;}
+      .hero-left h1{font-size:42px;}
+      .hero-left p{font-size:16px;}
+      .hero-left .kicker{font-size:16px; padding:6px 10px;}
+      .hero{grid-template-columns:1fr; padding-top:100px;}
+      .services-grid,.portfolio-grid,.pricing-grid,.team-grid{grid-template-columns:1fr;}
+      .brands-slider{padding:15px 0;}
+      .testimonial { flex: 0 0 100%; }
+      .hero-right{display:none;}
+    }
+
+    /* Mobile: very small screens 480px and below */
+    @media (max-width:480px){
+      .hero-left h1{font-size:32px;}
+      .hero-left p{font-size:14px;}
+      .hero-left .kicker{font-size:14px; padding:4px 8px;}
+      header{padding:10px 3%;}
+      nav a{font-size:13px; padding:6px 0;}
+      .pricing-head{flex-direction:column; gap:10px;}
+      .pricing-grid{gap:14px;}
+      .service .icon{width:44px;height:44px;font-size:18px;}
+      .portfolio-item img{height:180px;}
     }
 
 
@@ -362,11 +388,6 @@
 
     @media(max-width:680px){
       .testimonial { flex: 0 0 100%; } /* 1 per view on mobile */
-    }
-    @media (max-width:680px) {
-      .hero-right {
-        display: none;
-      }
     }
 
 
@@ -900,7 +921,3 @@
   </script>
 </body>
 </html>
-
-
-
-
