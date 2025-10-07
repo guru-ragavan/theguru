@@ -68,7 +68,7 @@
     }
     .hero-left{max-width:720px; padding-left: 20px;}
     .kicker{display:inline-block;padding:8px 12px;border-radius:999px;background:linear-gradient(90deg, rgba(123,97,255,0.10), rgba(43,208,255,0.06));color:var(--muted);font-weight:800;margin-bottom:18px}
-    .hero h1{font-size:70px;line-height:1.02;margin:0 0 18px;font-weight:1000;color:var(--text)}
+    .hero h1{line-height:1.02;margin:0 0 18px;font-weight:1000;color:var(--text)}
     .hero p{color:var(--muted);font-size:20px;margin-bottom:28px;max-width:60ch}
     .ctas{display:flex;gap:12px;flex-wrap:wrap}
     .btn{padding:12px 18px;border-radius:10px;font-weight:800;cursor:pointer;border:0;transition:all .25s}
@@ -346,6 +346,9 @@
     
     /* Laptop: medium screens 1024px and below */
     @media (max-width:1024px){
+      .hero-left{padding-left:10px;}
+      .hero h1{font-size:58px; line-height:1.1;}
+      .hero p{font-size:18px;}
       .services-grid{grid-template-columns:repeat(2,1fr);}
       .portfolio-grid{grid-template-columns:repeat(2,1fr);}
       .pricing-grid{grid-template-columns:repeat(2,1fr);}
@@ -904,6 +907,7 @@
   </script>
 </body>
 </html>
+
 
 
 
