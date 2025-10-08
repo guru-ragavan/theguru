@@ -79,6 +79,10 @@
       border-radius:18px; overflow:hidden
       height:420px; display:flex;align-items:center;justify-content:center;
     }
+
+    .hero-trust{
+      padding-top: 20px;
+    }
     
     /* Sections */
       section {
@@ -339,35 +343,6 @@
       }
     }
 
-    /* ✅ Mobile: Remove hero-right and expand hero-left */
-    @media (max-width:768px){
-      .hero {
-        grid-template-columns: 1fr; /* full width */
-        padding: 50px 5% 40px;
-        text-align: center; /* center text */
-      }
-      .hero-right {
-        display: none !important; /* completely remove */
-      }
-      .hero-left {
-        max-width: 100%;
-        padding: 0;
-        margin: 0 auto;
-      }
-      .hero-left h1 {
-        font-size: 40px;
-        line-height: 1.2;
-      }
-      .hero-left p {
-        font-size: 16px;
-        margin: 12px auto 24px;
-        max-width: 90%;
-      }
-      .ctas {
-        justify-content: center;
-      }
-    }
-
 
     /* ----------------------
        Global Responsive Tweaks
@@ -436,28 +411,34 @@
 
   <!-- HERO -->
   <main id="home">
-    <section class="hero container" aria-label="Hero section">
-      <div class="hero-left" >
-        <div class="kicker" data-animate="from-left" data-delay="80">Premium • Performance • Growth</div>
+<!-- HERO - Replace existing hero section with this -->
+  <section class="hero container" id="home" aria-label="Hero section" style="margin: -80px auto;">
+    <div class="hero-left">
+      <div class="kicker" data-animate="from-left" data-delay="80">Premium • Performance • Growth</div>
 
-        <h1 data-animate="from-left" data-delay="160">Empower Your Brand with <span style="background:linear-gradient(90deg,var(--accent-2),var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent">Guru</span></h1>
+      <h1 data-animate="from-left" data-delay="160">Empower Your Brand with <span style="background:linear-gradient(90deg,var(--accent-2),var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent">Guru</span></h1>
 
-        <p data-animate="from-left" data-delay="260">We design high-converting digital experiences — from growth-driven ads and SEO to viral social campaigns and brand systems. Bold strategy. Elegant design. Measurable ROI.</p>
+      <p data-animate="from-left" data-delay="260" class="hero-sub">
+        Full-funnel digital marketing — strategic ads, SEO, social and design that convert visitors into customers.
+      </p>
 
-        <div class="ctas" data-animate="from-left" data-delay="420">
-          <button class="btn btn-primary">Get Started</button>
-          <button class="btn btn-ghost">Explore Services</button>
-        </div>
+      <div class="ctas" data-animate="from-left" data-delay="420">
+        <a class="btn btn-primary" href="#contact" id="consultBtn">Get Free Consultation</a>
+        <a class="btn btn-ghost" href="#portfolio">View Our Work</a>
       </div>
 
-      <div class="hero-right" data-animate="from-right" data-delay="200" aria-hidden="true">
-        <div class="hero-media">
-          <img src="logo.png" 
-              alt="Digital marketing hero image" 
-              style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
-        </div>
-</div>
-    </section>
+      <div class="hero-trust" data-animate="from-left" data-delay="520" aria-hidden >
+        <span class="trust-stars">★★★★★</span>
+        <span class="trust-text">“Increased leads 3x in 60 days” — BrightTech</span>
+      </div>
+    </div>
+
+    <div class="hero-right" data-animate="from-right" data-delay="200" aria-hidden>
+      <!-- Change src to your local or online image -->
+      <img src="logo.png" alt="Campaign preview" loading="lazy">
+    </div>
+  </section>
+
 
     <!-- SERVICES -->
     <section id="services" class="container" aria-labelledby="services-title">
@@ -936,9 +917,6 @@
   </script>
 </body>
 </html>
-
-
-
 
 
 
