@@ -40,7 +40,7 @@
 
     /* Utility Container & Section Padding */
     .container{max-width:1200px;margin:0 auto}
-    section { padding: 80px 5%; } /* Increased vertical padding for better spacing */
+    section { padding: 80px 5%; }
     .section-title{text-align:center;font-size:32px;margin-bottom:40px;font-weight:900;color:var(--text)}
 
     /* -------------------------
@@ -73,7 +73,7 @@
       grid-template-columns: 1fr 520px;
       gap:60px;
       align-items:center;
-      padding:140px 2% 80px; /* Adjusted padding to accommodate fixed header */
+      padding:140px 2% 80px;
       max-width:1200px;
       margin: 0 auto;
       min-height:70vh;
@@ -126,7 +126,7 @@
     }
     .brands-track {
       display: flex; gap:60px; animation: scrollBrands 30s linear infinite;
-      width: fit-content; /* Important for animation */
+      width: fit-content;
     }
     .brands-track img {
       height:50px; object-fit:contain; filter: grayscale(30%); transition: filter 0.3s;
@@ -135,17 +135,16 @@
     .brands-track img:hover { filter: grayscale(0%); }
     @keyframes scrollBrands {
       0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); } /* Scrolls half the track width */
+      100% { transform: translateX(-50%); }
     }
 
     /* -------------------------
        5. Testimonials Slider
     ------------------------- */
     .testimonial-slider { position: relative; margin-top: 40px; }
-    .testimonial-track-wrapper { overflow: hidden; padding: 0 40px; } /* Space for buttons */
+    .testimonial-track-wrapper { overflow: hidden; padding: 0 40px; }
     .testimonial-track { display: flex; gap: 20px; transition: transform 0.4s cubic-bezier(.2,.9,.2,1); }
     .testimonial {
-      /* Base: 3 cards per view on large screens */
       flex: 0 0 calc(33.333% - 13.333px);
       background: var(--card); border: 1px solid var(--border); border-radius: 12px;
       padding: 30px; text-align: center; display: flex; flex-direction: column; gap: 18px;
@@ -229,32 +228,30 @@
 
 
     /* -------------------------
-       10. Responsive Media Queries (The core of automatic responsiveness)
+       10. Responsive Media Queries
     ------------------------- */
 
     /* Tablet/Medium Screens (1024px and below) */
     @media (max-width:1024px){
       .section-title{font-size:30px;}
-      /* Hero Adjustments */
       .hero{grid-template-columns:1fr 400px; gap:30px;}
       .hero h1{font-size:52px; line-height:1.1;}
       .hero p{font-size:18px;}
-      /* Grid Adjustments (2 columns) */
       .services-grid{grid-template-columns:repeat(2,1fr); gap:20px;}
       .portfolio-grid{grid-template-columns:repeat(2,1fr); gap:16px;}
       .pricing-grid{grid-template-columns:repeat(2,1fr); gap:16px;}
-      /* Testimonials (2 per view) */
       .testimonial { flex: 0 0 calc(50% - 10px); }
     }
 
     /* Mobile/Small Screens (768px and below) */
     @media (max-width:768px){
-      section { padding: 60px 5%; }
+      section { padding: 40px 5%; }
+      .section-title{font-size:26px; margin-bottom:30px;}
+
       /* Header & Mobile Menu */
       nav{ display: none; }
       .menu-btn { display: block; }
       .nav-links {
-        /* Mobile menu dropdown style */
         display: none;
         flex-direction: column; position: absolute; top: 70px; right: 0; left: 0;
         background: white; padding: 10px 0; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -263,17 +260,26 @@
       }
       .nav-links a { padding: 12px 24px; border-bottom: 1px solid var(--card); }
       .nav-links.active { display: flex; }
-      @keyframes slideDown { from {opacity: 0; transform: translateY(-10px);} to {opacity: 1; transform: translateY(0);} }
 
-      /* Hero Adjustments */
-      .hero{grid-template-columns:1fr; gap:30px; padding-top:100px; min-height: initial;}
-      .hero-right{display:none;} /* Hide hero image on mobile */
-      .hero h1{font-size:42px; text-align:center;}
-      .hero p{font-size:16px; text-align:center;}
-      .hero-left{text-align:center;}
-      .kicker{margin:0 auto 18px;}
-      .ctas{justify-content:center;}
-      .hero-trust{text-align:center;}
+      /* *** HERO SECTION IMPROVEMENTS *** */
+      .hero{
+        grid-template-columns:1fr;
+        gap:20px;
+        padding-top:100px; /* Reduced vertical padding */
+        padding-bottom: 40px;
+        min-height: initial;
+      }
+      .hero-right{display:none;} /* Hide hero image */
+
+      /* Changed alignment for a cleaner, more professional mobile look */
+      .hero-left{text-align:left;}
+      .hero h1{font-size:34px; line-height: 1.2; text-align:left; margin-bottom:12px;}
+      .hero p{font-size:16px; text-align:left; margin-bottom:24px;}
+      .kicker{margin:0 0 16px 0;}
+      .ctas{justify-content:flex-start; gap:12px;} /* Align CTAs to the left */
+      .btn{font-size:14px; padding: 10px 18px;}
+      .hero-trust{text-align:left; font-size:13px;}
+
 
       /* Grid Adjustments (1 column) */
       .services-grid,.portfolio-grid,.pricing-grid{grid-template-columns:1fr; gap:16px;}
@@ -283,6 +289,9 @@
       .slide-btn{ font-size: 16px; padding: 6px 10px; }
       .slide-btn.left { left: 0; }
       .slide-btn.right { right: 0; }
+      .pricing-head{flex-direction:column; align-items:flex-start; margin-bottom:20px;}
+      .price-card b{font-size:28px;}
+      .portfolio-item img{height:220px;}
     }
 
   </style>
@@ -479,7 +488,7 @@
         </div>
 
         <div class="portfolio-item" data-animate="from-right" data-delay="500">
-          <img src="https://images.unsplash.com/photo-1522205408450-add114ad53fe?q=80&w=1200&auto=format&fit=crop" alt="project 6">
+          <img src="https://images.unsplash.com/photo-1522205408450-add114ad53fe?q=80&w=1200&auto-format&fit=crop" alt="project 6">
           <div class="overlay"><strong>Marketing Campaign</strong><div style="font-size:12px;opacity:.9">View Case</div></div>
         </div>
       </div>
@@ -593,7 +602,6 @@
           const el = document.querySelector(href);
           if(!el) return;
           e.preventDefault();
-          // Offset position by header height + a small buffer
           const headerHeight = header.offsetHeight;
           const top = el.getBoundingClientRect().top + window.scrollY - headerHeight - 12;
           window.scrollTo({top, behavior:'smooth'});
@@ -624,9 +632,7 @@
             form.reset();
             statusDiv.textContent = "Sent!";
             popup.style.display = "block";
-            // Animate popup in
             setTimeout(() => popup.style.transform = "translate(-50%,-50%) scale(1)", 10);
-            // Animate popup out and hide
             setTimeout(() => {
               popup.style.transform = "translate(-50%,-50%) scale(0.9)";
               popup.style.opacity = "0";
@@ -651,12 +657,10 @@
       const navLinks = document.getElementById("navLinks");
 
       if (menuBtn && navLinks) {
-        // Toggle the mobile menu
         menuBtn.addEventListener("click", () => {
           navLinks.classList.toggle("active");
           menuBtn.textContent = navLinks.classList.contains("active") ? "✖" : "☰";
         });
-        // Close menu when a link is clicked
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
@@ -666,7 +670,7 @@
       }
     })();
 
-    // 6. Testimonial Slider Functionality (FIXED FOR RESPONSIVENESS)
+    // 6. Testimonial Slider Functionality
     (function(){
       const track = document.querySelector('.testimonial-track');
       const wrapper = document.querySelector('.testimonial-track-wrapper');
@@ -688,15 +692,12 @@
 
         const itemsPerView = getItemsPerView();
         const testimonialWidth = testimonials[0].offsetWidth + 20; // width + gap
-        // Calculate max index: total items - items visible
         const maxIndex = testimonials.length - itemsPerView;
 
-        // Clamp index to prevent scrolling past the last item
         index = Math.max(0, Math.min(index, maxIndex));
 
         track.style.transform = `translateX(-${index * testimonialWidth}px)`;
 
-        // Optionally disable buttons when at start/end
         btnLeft.disabled = index === 0;
         btnRight.disabled = index >= maxIndex;
       }
@@ -713,14 +714,11 @@
         updateSlider();
       });
 
-      // Update slider on resize and load
       window.addEventListener('resize', () => {
-        // Reset index to 0 when resizing for a cleaner recalculation
         index = 0;
         updateSlider();
       });
 
-      // Initial call
       updateSlider();
     })();
 
